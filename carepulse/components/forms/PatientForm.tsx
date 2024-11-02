@@ -9,6 +9,7 @@ import SubmitButton from "../SubmitButton"
 import { useState } from "react"
 import { userFormValidation as formSchema } from "@/lib/validation"
 import { useRouter } from "next/navigation"
+import { createUser } from "@/lib/actions/patient.action"
 
 //Using an enum rather than a simple string type in the customFormField 
 //component interface provides stricter type checking. With a plain string,
@@ -50,13 +51,13 @@ const PatientForm = () => {
     setIsLoading(true);
 
     try {
-      // const userData = {
-      //   name,
-      //   email,
-      //   phone,
-      // }
-      // const user = await createUser(userData);
-      // if(user) router.push(`/patients/${user.$id}/register`)
+      const userData = {
+        name,
+        email,
+        phone,
+      }
+      const user = await createUser(userData);
+      if(user) router.push(`/patients/${user.$id}/register`)
       
     } catch (error) {
       console.log(error)
